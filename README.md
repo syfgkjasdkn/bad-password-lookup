@@ -19,7 +19,7 @@ flower (rust bloom)        0.44 K - 232.48x slower
 
 Space efficiency
 ```
-Original file: ~8MB
+Original file (1m passwords): ~8MB
 FST: ~6MB
 ETS: ~30MB
 ```
