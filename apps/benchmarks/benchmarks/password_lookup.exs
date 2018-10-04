@@ -1,12 +1,10 @@
 defmodule PasswordBench do
   @passwords_txt DataSource.txt_path("sorted_passwords.txt")
 
-  @passwords [
-    "hello",
-    "qwerty",
-    "this_is_a_good_password",
-    "123456"
-  ]
+  @passwords @passwords_txt
+             |> File.stream!()
+             |> Stream.map(&String.trim/1)
+             |> Enum.take_random(500)
 
   def bench([password | rest], callback) do
     callback.(password)
@@ -48,10 +46,27 @@ defmodule PasswordBench do
       end)
     end
   end
+
+  def bloomex do
+    bf = Bloomex.scalable(1_000_000, 0.1, 0.1, 2)
+
+    @passwords_txt
+    |> File.stream!()
+    |> Enum.each(fn password ->
+      Bloomex.add(bf, String.trim(password))
+    end)
+
+    fn ->
+      PasswordBench.bench(@passwords, fn password ->
+        Bloomex.member?(bf, password)
+      end)
+    end
+  end
 end
 
 Benchee.run(%{
   "control" => PasswordBench.control(),
   "fst" => PasswordBench.fst(),
-  "in_memory_ets" => PasswordBench.in_memory_ets()
+  "in_memory_ets" => PasswordBench.in_memory_ets(),
+  "bloomex" => PasswordBench.bloomex()
 })
