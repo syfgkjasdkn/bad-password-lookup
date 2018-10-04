@@ -1,11 +1,11 @@
 ```
 Name                    ips        average  deviation         median         99th %
-control              8.26 M       0.121 μs   ±328.07%       0.110 μs        0.21 μs
-in_memory_ets        1.50 M        0.66 μs   ±357.30%        0.60 μs           1 μs
-fst                  0.37 M        2.69 μs   ±763.55%           3 μs           4 μs
+control            107.60 K        9.29 μs    ±60.97%           9 μs          14 μs
+in_memory_ets        9.16 K      109.16 μs    ±29.93%         102 μs         221 μs
+fst                  2.54 K      393.89 μs     ±8.11%         389 μs         512 μs
 
 Comparison:
-control              8.26 M
-in_memory_ets        1.50 M - 5.49x slower
-fst                  0.37 M - 22.23x slower
+control            107.60 K
+in_memory_ets        9.16 K - 11.75x slower
+fst                  2.54 K - 42.38x slower
 ```
