@@ -1,3 +1,4 @@
+One iteration = 500 lookups
 ```
 Name                    ips        average  deviation         median         99th %
 control            107.60 K        9.29 μs    ±60.97%           9 μs          14 μs
