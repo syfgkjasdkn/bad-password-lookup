@@ -1,0 +1,15 @@
+[package]
+name = "fst_nifs"
+version = "0.1.0"
+authors = []
+
+[lib]
+name = "fst_nifs"
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+rustler = "0.18.0"
+rustler_codegen = "0.18.0"
+lazy_static = "1.0"
+fst = "0.3"
