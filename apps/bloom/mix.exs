@@ -25,7 +25,9 @@ defmodule Bloom.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:bloomex, "~> 1.0"}
+      {:rustler, "~> 0.18", override: true, runtime: false},
+      {:bloomex, "~> 1.0"},
+      {:flower, "~> 0.1.4"}
     ]
   end
 end

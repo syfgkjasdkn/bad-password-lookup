@@ -27,7 +27,7 @@ defmodule FST.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:rustler, "~> 0.18", runtime: false}
+      {:rustler, "~> 0.18", runtime: false, override: true}
     ]
   end
 

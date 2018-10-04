@@ -62,11 +62,28 @@ defmodule PasswordBench do
       end)
     end
   end
+
+  def flower do
+    bf = Flower.Bloom.new(:"2 MB", 1_000_000)
+
+    @passwords_txt
+    |> File.stream!()
+    |> Enum.each(fn password ->
+      Flower.Bloom.insert(bf, String.trim(password))
+    end)
+
+    fn ->
+      PasswordBench.bench(@passwords, fn password ->
+        Flower.Bloom.has?(bf, password)
+      end)
+    end
+  end
 end
 
 Benchee.run(%{
   "control" => PasswordBench.control(),
   "fst" => PasswordBench.fst(),
   "in_memory_ets" => PasswordBench.in_memory_ets(),
-  "bloomex" => PasswordBench.bloomex()
+  "bloomex" => PasswordBench.bloomex(),
+  "flower (rust bloom)" => PasswordBench.flower()
 })
