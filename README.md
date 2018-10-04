@@ -14,3 +14,11 @@ bloomex                    3.98 K - 25.81x slower
 fst                        2.55 K - 40.26x slower
 flower (rust bloom)        0.44 K - 232.48x slower
 ```
+
+---
+
+Space efficiency
+
+Original file: ~8MB
+FST: ~6MB
+ETS: ~30MB
